@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My favorite anime</title>
+
+  <style>
+  /* =========================================
+     1) VARIABLES + RESET
+     CSS variables (design tokens) keep styling
+     consistent and easy to update in one place.
+     ========================================= */
+  :root {
+    --ink: #111;                          /* Primary text color */
+    --muted: #555;                        /* Secondary text color (passes AA) */
+    --bg: #e5b6f9;                        /* Page background color */
+    --card: #dabceb;                         /* Card background color */
+    --line: rgba(0, 0, 0, .12);           /* Subtle border color */
+    --shadow: 0 10px 22px rgba(0,0,0,.06);/* Soft elevation */
+    --radius: 14px;                       /* Default corner radius */
+  }
+
+  /* Box-sizing reset: padding no longer adds to total width */
+  * { box-sizing: border-box; }
+
+  /* =========================================
+     2) BASE STYLES (MOBILE-FIRST)
+     clamp() gives fluid typography without
+     a separate media query for every size.
+     ========================================= */
+  body {
+    margin: 0;                                  /* Removes default margin */
+    font-family: Arial, Helvetica, sans-serif;  /* Clean sans-serif stack */
+    background: var(--bg);
+    color: var(--ink);
+
+    /* clamp(min, fluid, max):
+       16px floor keeps body readable on phones,
+       1.2vw scales with the screen,
+       20px ceiling stops it growing too large. */
+    font-size: clamp(16px, 1.2vw, 20px);
+
+    line-height: 1.6;                           /* Comfortable reading */
+  }
+
+  /* =========================================
+     CONTAINER: centers + limits width,
+     with padding that scales via clamp().
+     ========================================= */
+  .container {
+    max-width: 980px;       /* Prevents overly wide text lines */
+    margin: 0 auto;         /* Centers horizontally */
+    padding: clamp(16px, 3vw, 32px);
+  }
+
+  /* =========================================
+     3) CLAMP TYPE SCALE
+     Larger screens get larger headings,
+     but each size is clamped at both ends.
+     ========================================= */
+  h1 {
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;          /* Slight tightening for headlines */
+    font-size: clamp(28px, 4vw, 56px);
+    line-height: 1.08;
+    font-weight: 700;
+
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    font-size: clamp(20px, 2.2vw, 32px);
+    line-height: 1.2;
+  }
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: clamp(16px, 1.6vw, 22px);
+    line-height: 1.25;
+  }
+
+  /* Paragraph readability: cap line length at ~65 characters */
+  p {
+    margin: 0 0 12px;
+    color: var(--muted);
+    max-width: 65ch;
+  }
+
+  /* Small text utility (captions, meta, footer) */
+  .small {
+    font-size: clamp(16px, 1vw, 18px);
+    color: var(--muted);
+  }
+
+  /* =========================================
+     4) SECTIONS / CARDS
+     ========================================= */
+  .hero {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(14px, 2.4vw, 24px);   /* Fluid padding */
+    box-shadow: var(--shadow);
+    margin-bottom: clamp(14px, 2.4vw, 22px);
+  }
+
+  /* Responsive grid: 1 column on mobile, no floats needed */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;   /* MOBILE FIRST: single column */
+    gap: 16px;                    /* Even spacing between cards */
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(12px, 2vw, 18px);  /* Fluid padding */
+    box-shadow: var(--shadow);
+  }
+
+  /* =========================================
+     5) BREAKPOINTS
+     Mobile: 1 column -> Tablet: 2 -> Desktop: 3
+     ========================================= */
+  @media (min-width: 720px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }  /* 2 columns */
+  }
+
+  @media (min-width: 980px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }  /* 3 columns */
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 18px;
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- This part is the introduction to my webpage -->
+    <section class="hero">
+      <!-- This is the main title of my webpage -->
+      <h1>The Seven Deadly Sins</h1>
+      <!-- This is the paragraph that explains why I like the anime -->
+      <p>
+        The Seven Deadly Sins is an anime and it is one of my favorite series. I like the storyline and how the characters all change over each season. It may be emotional with each episode, but the characters and adventure makes it better and more entertaining to watch.
+      </p>
+      <!-- This part is the smaller text that give a preview of the page -->
+      <p class="small">
+        This is a sneak peek into the characters, story, and world within this fantasy anime.
+      </p>
+    </section>
+
+   <!-- This section contains the four cards that talks about the anime. -->
+    <section>
+      <h2>A look into the story</h2>
+    <!-- The grid is what organizes the card based on the size of the screen -->
+      <div class="grid">
+        <article class="card">
+          <h3>Meliodas</h3>
+          <p>
+           Meliodas is known as the captain of the Seven Deadly Sins and is strong and has a cheerful personality. He normally acts playful, but he gets serious when it comes to those he cares about, just to protect them.
+          </p>
+          <p class="small">Character: The Dragon's Sin of Wrath</p>
+        </article>
+
+        <article class="card">
+          <h3>The world</h3>
+          <p>
+          This takes place in Britannia, a world filled with magic, powers, kingdoms, and legendary warriors. There are many different locations that create the world to make it into a world full of adventure, mystery and danger. 
+          </p>
+          <p class="small"> Category: Adventure and magic </p>
+        </article>
+
+        <article class="card">
+          <h3>Friendships and loyalty</h3>
+          <p>
+          Each of the characters have different personalities and abilities, that make it hard, but in the end they trust each other. The loyalty they have for their friends is what helps them when fighting is an important part of the story. 
+          </p>
+          <p class="small"> Theme: Trust and teamwork </p>
+        </article>
+
+          <article class="card">
+          <h3>Battles and Magic</h3>
+          <p>
+         The magic and battles they have makes the series entertaining to watch. Each character is special in their own way and each time they fight it reveal more about their history, relationships and what they struggle with.
+          </p>
+          <p class="small"> Category: Supernatural powers and action </p>
+        </article>
+      </div>
+    </section>
+<!-- This section is explaining my choices for the responsive typography -->
+        <section class="reflection">
+      <h2>Reflection</h2>
+      <!-- This is where I explained my H1 clamp values and how I tested the webpage -->
+      <p>
+       For my H1, I used clamp(28px, 4vw, 56px). The minimum size of 28px makes the heading readable on mobile screens, while the preferred size of 4vw allows the font to adjust based on the width of the screen. The maximum size of 56px prevents the heading from becoming too large on desktop screens. I tested my webpage on phone, tablet, and desktop screen sizes to check that the text remained readable and the cards adjusted to fit each screen.
+      </p>
+      </section>
+      <!-- The footer is what shows my name and the title of the assignment-->
+    <footer>
+      <p class="small">Created by: Crystal Le • Clamp Assignment</p>
+    </footer>
+
+  </div> 
+</body>
+</html>
